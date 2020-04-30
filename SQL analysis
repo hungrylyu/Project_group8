@@ -25,3 +25,10 @@ from employee_job_role as a, employee_attrition as b
 where a.employee_number = b.employee_number and b.attrition = 'Yes'
 group by a.job_role, b.attrition
 order by count DESC
+
+#Example 4#
+select b.job_level, count(b.job_level), a.attrition
+from employee_attrition as a, employee_job_role as b
+where a.employee_number = b.employee_number
+group by b.job_level, a.attrition
+
