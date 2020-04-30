@@ -1,0 +1,4 @@
+#Example4#
+model1 = glm(attrition~job_role+business_travel,data=project,family='binomial')
+model1
+summary(model1)  
