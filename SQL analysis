@@ -26,6 +26,13 @@ where a.employee_number = b.employee_number and b.attrition = 'Yes'
 group by a.job_role, b.attrition
 order by count DESC
 
+#example 5#
+select b.work_life_balance, count(a.attrition), a.attrition
+from employee_attrition as a, employee_work_life_balance as b
+where a.employee_number = b.employee_number
+group by b.work_life_balance, a.attrition
+
+
 #Example 4#
 select b.job_level, count(b.job_level), a.attrition
 from employee_attrition as a, employee_job_role as b
