@@ -1,0 +1,87 @@
+project = read.csv("project.csv")
+
+#build employee_background dataset in R
+employee_background <- project[,c(10,12,1,7,8,21,18)]
+str(employee_background)
+birth_year <- 2017 - project[,1]
+employee_background <- cbind(birth_year,employee_background)
+employee_background <- employee_background[,c(2,3,1,5,6,7,8)]
+
+
+#build job_standard_time dataset in R
+job_standard_time <- project[,c(16,27)]
+job_standard_time <- job_standard_time[!duplicated(job_standard_time),]
+
+#build distance table dataset in R
+distance <- project[,c(10,6)]
+
+#build employee_attrition dataset in R
+employee_attrition <- project[,c(10,2)]
+
+#build employee_job_role dataset in R
+employee_job_role <- project[,c(10,5,15,16)]
+
+#build employee_involvement dataset in R
+employee_involvement <- project[,c(10,14)]
+
+#build employee_job_satisfaction dataset in R
+employee_job_satisfaction <- project[,c(10,17)]
+
+#build employee_relationship_satisfaction dataset in R
+employee_relationship_satisfaction <- project[,c(10,26)]
+
+#build employee_environment_satisfaction dataset in R
+employee_environment_satisfaction <- project[,c(10,11)]
+
+#build employee_business_travel dataset in R
+employee_business_travel <- project[,c(10,3)]
+
+#build employee_salary dataset in R
+employee_salary <- project[,c(10,4,13,19,20,24)]
+
+#build employee_overtime dataset in R
+employee_overtime <- project[,c(10,23)]
+
+#build employee_performance dataset in R
+employee_performance <- project[,c(10,25)]
+
+#build 3mployee_stock dataset in R
+employee_stock <- project[,c(10,28)]
+
+#build employee_current_work_related_time dataset in R
+employee_current_work_related_time <- project[,c(10,29,30,32,33,34,35)]
+
+#build employee_work_life_balance dataset in R
+employee_work_life_balance <- project[,c(10,31)]
+
+#interact R with SQL
+require('RPostgreSQL')
+drv <- dbDriver('PostgreSQL')
+con <- dbConnect(drv, dbname = 'abc_pharmacy',
+                 host = 'localhost', port = 5432,
+                 user = 'postgres', password = 'pwd4APAN5310')
+
+#insert data to the tables
+dbWriteTable(con,'employee_background',employee_background, row.names=FALSE, append=TRUE)  
+dbWriteTable(con,'job_standard_time',job_standard_time, row.names=FALSE, append=TRUE)
+dbWriteTable(con,'distance',distance, row.names=FALSE, append=TRUE)
+dbWriteTable(con,'employee_attrition',employee_attrition, row.names=FALSE, append=TRUE)
+dbWriteTable(con,'employee_job_role',employee_job_role, row.names=FALSE, append=TRUE)
+dbWriteTable(con,'employee_involvement',employee_involvement, row.names=FALSE, append=TRUE)
+dbWriteTable(con,'employee_job_satisfaction',employee_job_satisfaction, row.names=FALSE, append=TRUE)
+dbWriteTable(con,'employee_relationship_satisfaction',employee_relationship_satisfaction, row.names=FALSE, append=TRUE)
+dbWriteTable(con,'employee_environment_satisfaction',employee_environment_satisfaction, row.names=FALSE, append=TRUE)
+dbWriteTable(con,'employee_business_travel',employee_business_travel, row.names=FALSE, append=TRUE)
+dbWriteTable(con,'employee_salary',employee_salary, row.names=FALSE, append=TRUE)
+dbWriteTable(con,'employee_overtime',employee_overtime, row.names=FALSE, append=TRUE)
+dbWriteTable(con,'employee_performance',employee_performance, row.names=FALSE, append=TRUE)
+dbWriteTable(con,'employee_stock',employee_stock, row.names=FALSE, append=TRUE)
+dbWriteTable(con,'employee_current_work_related_timey',employee_current_work_related_time, row.names=FALSE, append=TRUE)
+dbWriteTable(con,'employee_work_life_balance',employee_work_life_balance, row.names=FALSE, append=TRUE)
+
+
+
+
+
+
+
