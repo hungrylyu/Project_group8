@@ -1,3 +1,16 @@
+#example1#
+select employee_business_travel.business_travel, count(employee_business_travel.business_travel),
+          employee_attrition.attrition
+from employee_business_travel, employee_attrition
+where employee_business_travel.employee_number = employee_attrition.employee_number
+group by employee_business_travel.business_travel, employee_attrition.attrition
+
+#example2#
+select count(b.job_role) as count,
+       b.job_role
+from employee_job_role as b
+group by b.job_role
+
 select a.business_travel, count(a.business_travel) as count,
        b.job_role
 from employee_business_travel as a, employee_job_role as b
