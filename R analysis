@@ -3,3 +3,16 @@ model1 = glm(attrition~job_role+business_travel+job_level, data=project, family=
 model1
 summary(model1)   
  
+#Example9#
+project$job_satisfaction <- as.factor(project$job_satisfaction)
+project$environment_satisfaction <- as.factor(project$environment_satisfaction)
+project$work_life_balance <- as.factor(project$work_life_balance)
+model2 = glm(attrition~job_satisfaction+environment_satisfaction+work_life_balance
+               ,data=project,family='binomial')
+summary(model2)      
+
+#Example10#
+model3 = glm(attrition~job_role+business_travel+job_level+
+               monthly_rate+overtime+total_working_years,
+               data=project,family='binomial')
+summary(model3)
