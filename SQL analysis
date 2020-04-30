@@ -17,3 +17,11 @@ from employee_business_travel as a, employee_job_role as b
 where a.employee_number = b.employee_number
 group by a.business_travel, b.job_role
 order by a.business_travel, count DESC
+
+#example 3#
+select a.job_role, count(b.attrition) as count,
+          b.attrition
+from employee_job_role as a, employee_attrition as b
+where a.employee_number = b.employee_number and b.attrition = 'Yes'
+group by a.job_role, b.attrition
+order by count DESC
