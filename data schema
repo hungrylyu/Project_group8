@@ -1,0 +1,127 @@
+Create Table employee_background(
+employee_number INT,
+gender    varchar(10) check(gender in ('Female','Male')),
+birth_year INT NOT NULL,
+education_level char(1) NOT NULL,
+education_field VARCHAR NOT NULL,
+num_company_worked  INT NOT NULL,
+marital_status VARCHAR check(marital_status in ('Single','Married','Divorced')), 
+PRIMARY KEY(employee_number)
+);
+
+
+CREATE TABLE job_standard_time(
+job_role VARCHAR,
+standard_hour INT NOT NULL,
+PRIMARY KEY(job_role)
+);
+
+CREATE TABLE distance(
+employee_number INT,
+distance_from_home INT NOT NULL,
+PRIMARY KEY(employee_number),
+FOREIGN KEY(employee_number) REFERENCES employee_background(employee_number)
+);
+
+CREATE TABLE employee_attrition(
+employee_number INT,
+attrition varchar(5) check(attrition in ('Yes','No')),
+PRIMARY KEY(employee_number),
+FOREIGN KEY(employee_number) REFERENCES employee_background(employee_number)
+);
+
+CREATE TABLE employee_job_role (
+employee_number INT,
+department VARCHAR NOT NULL,
+job_level INT NOT NULL,
+job_role VARCHAR,
+PRIMARY KEY(employee_number),
+FOREIGN KEY(employee_number) REFERENCES employee_background(employee_number),
+FOREIGN KEY(job_role) REFERENCES job_standard_time(job_role)
+);
+
+CREATE TABLE employee_involvement(
+Employee_number INT, 
+job_involvement INT  ,
+PRIMARY KEY(employee_number),
+FOREIGN KEY(employee_number) REFERENCES employee_background(employee_number)
+);
+
+CREATE TABLE employee_job_satisfaction(
+employee_number INT,
+job_satisfaction INT ,
+PRIMARY KEY(employee_number),
+FOREIGN KEY(employee_number) REFERENCES employee_background(employee_number)
+);
+
+CREATE TABLE employee_relationship_satisfaction(
+employee_number INT,
+relationship_satisfaction INT,
+PRIMARY KEY(employee_number),
+FOREIGN KEY(employee_number) REFERENCES employee_background(employee_number)
+);
+
+CREATE TABLE employee_environment_satisfaction(
+employee_number INT,
+environment_satisfaction INT ,
+PRIMARY KEY(employee_number),
+FOREIGN KEY(employee_number) REFERENCES employee_background(employee_number)
+);
+
+CREATE TABLE employee_business_travel(
+employee_number INT,
+business_travel VARCHAR(30) ,
+PRIMARY KEY(employee_number),
+FOREIGN KEY(employee_number) REFERENCES employee_background(employee_number)
+);	
+
+CREATE TABLE employee_salary (
+employee_number INT,
+daily_rate INT NOT NULL,
+hourly_rate INT NOT NULL,
+monthly_income INT NOT NULL,
+monthly_rate INT NOT NULL,
+percent_salary_hike INT NOT NULL,
+PRIMARY KEY(employee_number),
+FOREIGN KEY(employee_number) REFERENCES employee_background(employee_number)
+);	
+
+CREATE TABLE employee_overtime(
+employee_number INT, 
+overtime varchar(5) check(overtime in ('Yes','No')),
+PRIMARY KEY(employee_number),
+FOREIGN KEY(employee_number) REFERENCES employee_background(employee_number)
+);
+
+CREATE TABLE employee_performance(
+employee_number INT, 
+performance_rate INT NOT NULL,
+PRIMARY KEY(employee_number),
+FOREIGN KEY(employee_number) REFERENCES employee_background(employee_number)
+);
+
+CREATE TABLE employee_stock(
+employee_number INT,
+stock_option_level CHAR(1) ,
+PRIMARY KEY(employee_number),
+FOREIGN KEY(employee_number) REFERENCES employee_background(employee_number)
+);
+
+CREATE TABLE employee_current_work_related_time(
+employee_number INT,
+total_work_time INT NOT NULL,
+training_last_year INT NOT NULL,
+year_at_company INT NOT NULL,
+year_at_role INT NOT NULL,
+year_last_promote INT NOT NULL,
+year_with_manager INT NOT NULL,
+PRIMARY KEY(employee_number),
+FOREIGN KEY(employee_number) REFERENCES employee_background(employee_number)
+);
+
+CREATE TABLE employee_work_life_balance(
+employee_number INT,
+work_life_balance INT ,
+PRIMARY KEY(employee_number),
+FOREIGN KEY(employee_number) REFERENCES employee_background(employee_number)
+);
